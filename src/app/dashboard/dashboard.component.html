@@ -1,0 +1,68 @@
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-5">
+    <div class="container-fluid">
+        <h3 class="navbar-brand d-flex align-items-center">Hi {{username}}!</h3>
+        <div class="navbar-text">
+            <button (click)="logout()" class="btn btn-primary">Logout</button>
+        </div>
+    </div>
+</nav>
+
+<div *ngIf="success;">
+    <div class="alert alert-success" role="alert">
+        {{success}}
+    </div>
+</div>
+
+<div *ngIf="error;">
+    <div class="alert alert-danger" role="alert">
+        {{error}}
+    </div>
+</div>
+
+<div *ngIf="allUsers; then ifUser; else elseUser;"></div>
+
+<ng-template #ifUser>
+    <div class="container">
+        <div class="row">
+            <div [ngClass]='{"col-lg-6 col-md-8":isToggle,"col-lg-12 col-md-12":!isToggle}'>
+                <table class="table">
+                    <tr>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr *ngFor="let user of allUsers">
+                        <app-row [details]="user" (handleUserData)="handleUserData($event)"></app-row>
+                    </tr>
+                </table>    
+            </div>
+            <div *ngIf="isUpdate;" class="col-lg-6 col-md-4">
+                <div class="d-flex justify-content-center border border-info pb-3 rounded">
+                    <form (submit)="handleSubmit($event)" class="pt-3">
+                        <input type="text" value="{{currentUserName}}" placeholder="Username" id="username" class="form-control"/>
+                        <input type="email" value="{{currentUserEmail}}" placeholder="Email" id="email" class="form-control"/>
+                        <button type="submit" class="btn btn-primary mt-3 mx-1">Update</button>
+                        <button type="button" (click)="cancleUpdate()" class="btn btn-primary mt-3 mx-1">Cancle</button>
+                    </form>
+                </div>
+            </div>
+            <div *ngIf="isDelete;" class="col-lg-6 col-md-4">
+                <div class="d-flex justify-content-center border border-info pb-3 rounded">
+                    <div>
+                        <p class="text-center pt-3">Are you confirm?</p>
+                        <button (click)="confirmDel()" class="btn btn-primary">Confirm</button>
+                        <button (click)="cancleDel()" class="btn btn-primary mx-2">Cancle</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #elseUser>
+    <div>
+        Loading...
+    </div>
+</ng-template>
