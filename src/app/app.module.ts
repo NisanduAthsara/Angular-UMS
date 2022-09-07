@@ -9,7 +9,6 @@ import { AuthService } from './auth.service';
 import { FuncsService } from './funcs.service';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { RowComponent } from './row/row.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +16,6 @@ import { RowComponent } from './row/row.component';
     RegisterComponent,
     LoginComponent,
     DashboardComponent,
-    RowComponent
   ],
   imports: [
     BrowserModule,

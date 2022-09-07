@@ -27,15 +27,22 @@
         <div class="row">
             <div [ngClass]='{"col-lg-6 col-md-8":isToggle,"col-lg-12 col-md-12":!isToggle}'>
                 <table class="table">
-                    <tr>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Update</th>
-                        <th>Delete</th>
-                    </tr>
-                    <tr *ngFor="let user of allUsers">
-                        <app-row [details]="user" (handleUserData)="handleUserData($event)"></app-row>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of allUsers">
+                            <td>{{user.username}}</td>
+                            <td>{{user.email}}</td>
+                            <td><button (click)="updateUser(user)" class="btn btn-primary">Update</button></td>
+                            <td><button (click)="deleteUser(user)" class="btn btn-primary">Delete</button></td>
+                        </tr>
+                    </tbody>
                 </table>    
             </div>
             <div *ngIf="isUpdate;" class="col-lg-6 col-md-4">

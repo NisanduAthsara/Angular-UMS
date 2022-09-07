@@ -132,4 +132,14 @@ export class DashboardComponent implements OnInit {
     this.success = ""
     this.error = ""
   }
+
+  updateUser(details:any){
+    const resData = {...details,isUpdate:true,isDelete:false}
+    this.handleUserData(resData)
+  }
+
+  deleteUser(details:any){
+    const resData = {...details,isUpdate:false,isDelete:true}
+    this.handleUserData(resData)
+  }
 }
